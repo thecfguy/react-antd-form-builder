@@ -78,7 +78,7 @@ const FormBuilder = ({
                                     <Row>
                                         <Col span={2}></Col>
                                         <Col span={20}>
-                                            <Form {...formProps} layout="horizontal" onFinish={onFormSubmit} onSubmit>
+                                            <Form {...formProps} onFinish={onFormSubmit} onSubmit>
                                                 <FormRenderer elements={elements}></FormRenderer>
                                                 <Form.Item>
                                                     <Button type="primary" htmlType="submit">
