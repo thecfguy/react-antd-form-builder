@@ -38,7 +38,6 @@ export const DropZone = ({ elements, onUpdate, formProps }) => {
     //     return acc;
     //   }, {});
     useEffect(() => {
-        console.log(draggedItem, "draggedItem");
         if (draggedItem && elements && onUpdate)
             if (draggedItem.id) {
                 // filter out the  unique id of the dragged item
@@ -50,10 +49,8 @@ export const DropZone = ({ elements, onUpdate, formProps }) => {
 
     const moveCard = useCallback(
         (dragIndex, hoverIndex) => {
-            console.log(elems, "elems");
             let elems = [...elements];
             [elems[dragIndex], elems[hoverIndex]] = [elems[hoverIndex], elems[dragIndex]];
-            console.log(elems, "elems");
             onUpdate(elems);
         },
         [elements, onUpdate]

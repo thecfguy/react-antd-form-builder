@@ -72,6 +72,7 @@ const FormItems = [
         fieldProps: {
             field_name: "checkboxes_",
             label: "Checkbox",
+            alignVertical: true,
             options: [
                 { label: "Option 1", value: "Option 1" },
                 { label: "Option 2", value: "Option 2" },
@@ -88,6 +89,7 @@ const FormItems = [
         fieldProps: {
             field_name: "radiobuttons_",
             label: "Options",
+            alignVertical: true,
             options: [
                 { label: "Option 1", value: "Option 1" },
                 { label: "Option 2", value: "Option 2" },

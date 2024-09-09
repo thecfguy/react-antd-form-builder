@@ -14,7 +14,13 @@ const camel2title = (camelCase) => {
     else return camelCase;
 };
 
-const renderField = (name, value) => {
+const renderField = (name, value, nonEditableProperties = []) => {
+    const getHiddenStatus = (name) => {
+        if (nonEditableProperties && nonEditableProperties.includes(name)) {
+            return true;
+        }
+        return false;
+    };
     let type = "TextArea";
     let options = [];
     switch (typeof value) {
@@ -30,12 +36,37 @@ const renderField = (name, value) => {
                     element={{ field_name: name, options: options, label: camel2title(name), type: type }}
                 />
             );
-        case "string":
-            if (name === "content") type = "TextArea";
-            else type = "TextInput";
-            return (
-                <FormElement element={{ field_name: name, options: options, label: camel2title(name), type: type }} />
-            );
+        case "string": {
+            if (name === "content") {
+                type = "TextArea";
+                return (
+                    <FormElement
+                        element={{
+                            maxLength: 1000,
+                            field_name: name,
+                            options: options,
+                            label: camel2title(name),
+                            type: type
+                        }}
+                    />
+                );
+            } else {
+                type = "TextInput";
+                return (
+                    <FormElement
+                        element={{
+                            hidden: getHiddenStatus(name),
+                            field_name: name,
+                            options: options,
+                            label: camel2title(name),
+                            type: type,
+                            maxLength: 255
+                        }}
+                    />
+                );
+            }
+            break;
+        }
         case "number":
             type = "NumberInput";
             return (

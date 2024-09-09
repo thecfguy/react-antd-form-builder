@@ -9,7 +9,6 @@ import FormViewer from "../form-viewer";
 import DropZone from "./drop-zone";
 import PropTypes from "prop-types";
 import { themeTypes } from "../appConstants";
-import FormItems from "./form-items";
 
 const { Sider, Content } = Layout;
 const { TabPane } = Tabs;
@@ -79,7 +78,7 @@ const FormBuilder = ({
                                     <Row>
                                         <Col span={2}></Col>
                                         <Col span={20}>
-                                            <Form {...formProps} onFinish={onFormSubmit} onSubmit>
+                                            <Form {...formProps} layout="horizontal" onFinish={onFormSubmit} onSubmit>
                                                 <FormRenderer elements={elements}></FormRenderer>
                                                 <Form.Item>
                                                     <Button type="primary" htmlType="submit">
