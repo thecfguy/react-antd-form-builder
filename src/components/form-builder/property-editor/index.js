@@ -8,7 +8,8 @@ const PropertyEditor = ({ element, show, onClose, onSubmit }) => {
         type: null,
         id: null,
         dropEffecct: null,
-        field_name: null
+        field_name: null,
+        hiddenFieldProps: []
     };
     const [form] = Form.useForm();
     const [visible, setVisible] = useState(false);
@@ -63,7 +64,7 @@ const PropertyEditor = ({ element, show, onClose, onSubmit }) => {
                 labelCol={{ span: 8 }}
             >
                 {Object.keys(editableProps).map((name) => {
-                    return renderField(name, editableProps[name]);
+                    return renderField(name, editableProps[name], editableProps["hiddenFieldProps"]);
                 })}
             </Form>
         </Drawer>
