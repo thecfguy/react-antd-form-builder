@@ -18,7 +18,8 @@ const argsTemp = {
                     key: "tempfiles",
                     signature: "d5d7908b0d568a08a5e0a34ef08288cf8ea327889ad4c5dea71494c43c75108a"
                 }
-            }
+            },
+            hiddenFieldProps: ["action", "headers"]
         },
         {
             key: "Photo",
@@ -32,7 +33,8 @@ const argsTemp = {
                     "x-amz-algorithm": "AWS4-HMAC-SHA256",
                     key: "tempfiles",
                     signature: "d5d7908b0d568a08a5e0a34ef08288cf8ea327889ad4c5dea71494c43c75108a"
-                }
+                },
+                hiddenFieldProps: ["action", "headers"]
             }
         }
     ],
@@ -275,7 +277,8 @@ const argsTempPreLoaded = {
         colon: true,
         requiredMark: true,
         labelCol: { span: 5 }
-    },toolbarItems: FormItems.filter((item) => item.key === "Header" || item.key === "Paragraph")
+    },
+    toolbarItems: FormItems.filter((item) => item.key === "Header" || item.key === "Paragraph")
 };
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
@@ -300,7 +303,7 @@ export default {
 
 export const FromScratch = {
     component: FormBuilder,
-    args: argsTempPreLoaded,
+    args: argsTemp,
     decorators: [
         (Story) => (
             <div style={{ margin: "3em" }}>

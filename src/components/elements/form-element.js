@@ -11,18 +11,20 @@ import {
     Rate,
     Button,
     DatePicker,
-    TimePicker
+    TimePicker,
+    Row,
+    Col
 } from "antd";
 import Signature from "./signature";
 import Upload from "./Upload";
 import EditableTable from "./EditableTable";
 
 const FormElement = ({ element, onAnyChange }) => {
-    const { dropEffect, type, id, label, field_name, rules, ...data } = element;
+    const { hidden, dropEffect, type, id, label, field_name, rules, ...data } = element;
 
     const wrapFormItem = (children) => {
         return (
-            <Form.Item label={label} key={field_name} name={field_name} rules={rules}>
+            <Form.Item hidden={hidden} label={label} key={field_name} name={field_name} rules={rules}>
                 {children}
             </Form.Item>
         );
@@ -53,10 +55,45 @@ const FormElement = ({ element, onAnyChange }) => {
                 return wrapFormItem(<Select {...data} />);
             case "Tags":
                 return wrapFormItem(<Select {...data} mode="tags" />);
-            case "Checkboxes":
+            case "Checkboxes": {
+                if (data.alignVertical) {
+                    const { options, ...rest } = data;
+                    return wrapFormItem(
+                        <Checkbox.Group {...rest}>
+                            <Row gutter={[16, 16]}>
+                                {options?.map((option, index) => {
+                                    return (
+                                        <Col span={24} key={index}>
+                                            <Checkbox value={option.value}>{option.label}</Checkbox>
+                                        </Col>
+                                    );
+                                })}
+                            </Row>
+                        </Checkbox.Group>
+                    );
+                }
                 return wrapFormItem(<Checkbox.Group {...data} />);
-            case "RadioButtons":
+            }
+
+            case "RadioButtons": {
+                if (data.alignVertical) {
+                    const { options, ...rest } = data;
+                    return wrapFormItem(
+                        <Radio.Group {...rest}>
+                            <Row gutter={[16, 16]}>
+                                {options?.map((option, index) => {
+                                    return (
+                                        <Col span={24} key={index}>
+                                            <Radio value={option.value}>{option.label}</Radio>
+                                        </Col>
+                                    );
+                                })}
+                            </Row>
+                        </Radio.Group>
+                    );
+                }
                 return wrapFormItem(<Radio.Group {...data} />);
+            }
             case "TextArea":
                 return wrapFormItem(<Input.TextArea {...data} />);
             case "DatePicker":
