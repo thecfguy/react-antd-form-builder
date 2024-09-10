@@ -21,6 +21,8 @@ const renderField = (name, value, nonEditableProperties = []) => {
         }
         return false;
     };
+    const isHidden = getHiddenStatus(name);
+    const extraProps = isHidden ? { hidden: true } : {};
     let type = "TextArea";
     let options = [];
     switch (typeof value) {
@@ -33,7 +35,13 @@ const renderField = (name, value, nonEditableProperties = []) => {
             return (
                 <FormElement
                     key={name}
-                    element={{ field_name: name, options: options, label: camel2title(name), type: type }}
+                    element={{
+                        ...extraProps,
+                        field_name: name,
+                        options: options,
+                        label: camel2title(name),
+                        type: type
+                    }}
                 />
             );
         case "string": {
@@ -42,6 +50,7 @@ const renderField = (name, value, nonEditableProperties = []) => {
                 return (
                     <FormElement
                         element={{
+                            ...extraProps,
                             maxLength: 1000,
                             field_name: name,
                             options: options,
@@ -55,7 +64,7 @@ const renderField = (name, value, nonEditableProperties = []) => {
                 return (
                     <FormElement
                         element={{
-                            hidden: getHiddenStatus(name),
+                            ...extraProps,
                             field_name: name,
                             options: options,
                             label: camel2title(name),
@@ -72,7 +81,13 @@ const renderField = (name, value, nonEditableProperties = []) => {
             return (
                 <FormElement
                     key={name}
-                    element={{ field_name: name, options: options, label: camel2title(name), type: type }}
+                    element={{
+                        ...extraProps,
+                        field_name: name,
+                        options: options,
+                        label: camel2title(name),
+                        type: type
+                    }}
                 />
             );
         case "object":
@@ -91,7 +106,13 @@ const renderField = (name, value, nonEditableProperties = []) => {
             return (
                 <FormElement
                     key={name}
-                    element={{ field_name: name, options: options, label: camel2title(name), type: type }}
+                    element={{
+                        ...extraProps,
+                        field_name: name,
+                        options: options,
+                        label: camel2title(name),
+                        type: type
+                    }}
                 />
             );
     }
