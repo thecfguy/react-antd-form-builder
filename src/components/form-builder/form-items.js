@@ -27,7 +27,17 @@ const FormItems = [
         name: "Paragraph",
         icon: "fas fa-paragraph",
         fieldProps: {
-            content: "Your text"
+            content: "Your text",
+            align: {
+                type: "select",
+                value: "center",
+                options: [
+                    { label: "Left", value: "left" },
+                    { label: "Center", value: "center" },
+                    { label: "Right", value: "right" },
+                    { label: "Justify", value: "justify" }
+                ]
+            }
         }
     },
     {
