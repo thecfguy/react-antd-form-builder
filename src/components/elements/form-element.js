@@ -32,9 +32,23 @@ const FormElement = ({ element, onAnyChange }) => {
     const renderElement = () => {
         switch (type) {
             case "Header":
+                const level = data?.level?.value || 1;
+                let styles = {
+                    textAlign: data?.align?.value || "center"
+                };
+
+                if (level === 1) return <h1 style={styles}>{data.content}</h1>;
+                if (level === 2) return <h2 style={styles}>{data.content}</h2>;
+                if (level === 3) return <h3 style={styles}>{data.content}</h3>;
+                if (level === 4) return <h4 style={styles}>{data.content}</h4>;
+                if (level === 5) return <h5 style={styles}>{data.content}</h5>;
+                if (level === 6) return <h6 style={styles}>{data.content}</h6>;
                 return <h1>{data.content}</h1>;
             case "Paragraph":
-                return <p>{data.content}</p>;
+                styles = {
+                    textAlign: data?.align?.value || "center"
+                };
+                return <p style={styles}>{data.content}</p>;
             case "LineBreak": {
                 const { content, ...props } = data;
                 return <Divider {...props}>{content}</Divider>;

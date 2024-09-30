@@ -4,7 +4,22 @@ const FormItems = [
         name: "Header Text",
         icon: "fas fa-heading",
         fieldProps: {
-            content: "Header"
+            content: "Header",
+            level: {
+                type: "number",
+                value: 1,
+                max: 6,
+                min: 1
+            },
+            align: {
+                type: "select",
+                value: "center",
+                options: [
+                    { label: "Left", value: "left" },
+                    { label: "Center", value: "center" },
+                    { label: "Right", value: "right" }
+                ]
+            }
         }
     },
     {

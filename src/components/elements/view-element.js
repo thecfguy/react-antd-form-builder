@@ -32,7 +32,7 @@ const ViewElement = ({ element, value, ...props }) => {
                         {value?.map((item, index) => (
                             <div key={index}>
                                 <a
-                                    href={`${item.url}?${Date.now()}`}
+                                    href={`${item.url}`}
                                     target="_blank"
                                     rel="noreferrer"
                                     onClick={(e) => {
