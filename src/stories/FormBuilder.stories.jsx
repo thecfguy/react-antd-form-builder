@@ -19,7 +19,7 @@ const argsTemp = {
                     signature: "d5d7908b0d568a08a5e0a34ef08288cf8ea327889ad4c5dea71494c43c75108a"
                 }
             },
-            hiddenFieldProps: ["action", "headers"]
+            hiddenFieldProps: ["headers"]
         },
         {
             key: "Photo",
@@ -36,6 +36,13 @@ const argsTemp = {
                 },
                 hiddenFieldProps: ["action", "headers"]
             }
+        }
+        ,
+        {
+            key: "LineBreak",
+            fieldProps: {
+            },
+            hiddenFieldProps: ["plain", "dashed"]
         }
     ],
     formProps: {
