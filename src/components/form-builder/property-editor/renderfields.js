@@ -3,6 +3,7 @@ import { FormElement } from "../../elements";
 import Columns from "./Columns";
 import Options from "./options";
 import Rules from "./rules";
+import CustomField from "./customField";
 
 const camel2title = (camelCase) => {
     if (Array.isArray(camelCase)) camelCase = camelCase[camelCase.length - 1];
@@ -14,7 +15,7 @@ const camel2title = (camelCase) => {
     else return camelCase;
 };
 
-const renderField = (name, value, nonEditableProperties = []) => {
+const renderField = (name, value, nonEditableProperties = [], props = {}) => {
     const getHiddenStatus = (name) => {
         if (nonEditableProperties && nonEditableProperties.includes(name)) {
             return true;
@@ -22,9 +23,10 @@ const renderField = (name, value, nonEditableProperties = []) => {
         return false;
     };
     const isHidden = getHiddenStatus(name);
-    const extraProps = isHidden ? { hidden: true } : {};
+    const extraProps = isHidden ? { hidden: true } : props;
     let type = "TextArea";
     let options = [];
+
     switch (typeof value) {
         case "boolean":
             type = "RadioButtons";
@@ -100,6 +102,10 @@ const renderField = (name, value, nonEditableProperties = []) => {
             if (name === "columns") {
                 return <Columns key={name} name={["columns"]} />;
             }
+            if (value?.value || value?.value === 0) {
+                return <CustomField name={name} value={value} key={name} />;
+            }
+
             break;
         default:
             type = "TextArea";

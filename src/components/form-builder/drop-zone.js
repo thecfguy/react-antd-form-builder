@@ -84,7 +84,7 @@ export const DropZone = ({ elements, onUpdate, formProps }) => {
     }
 
     return (
-        <div ref={drop} className={classes.dropzone} style={{ backgroundColor: backgroundColor }}>
+        <div ref={drop} className={classes.dropzone} style={{ backgroundColor: backgroundColor, padding: 5 }}>
             <Form labelAlign="right" colon requiredMark labelCol={{ span: 5 }} {...formProps}>
                 {elements.map((element, index) => {
                     return (
