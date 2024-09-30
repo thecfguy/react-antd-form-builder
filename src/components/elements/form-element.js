@@ -30,10 +30,11 @@ const FormElement = ({ element, onAnyChange }) => {
         );
     };
     const renderElement = () => {
+        let styles = {};
         switch (type) {
             case "Header":
                 const level = data?.level?.value || 1;
-                let styles = {
+                styles = {
                     textAlign: data?.align?.value || "center"
                 };
 
